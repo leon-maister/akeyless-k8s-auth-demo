@@ -23,6 +23,5 @@ spec:
 
       containers:
       - name: python-app
-        # Update this tag manually to 3.0 or the version you just pushed
-        image: leonmaister/akeyless-kubernetes-authentication-demo:4.3
+        image: leonmaister/akeyless-kubernetes-authentication-demo:5.0
         imagePullPolicy: Always
