@@ -2,6 +2,10 @@
 
 This project demonstrates how to authenticate a Python application within Kubernetes using an Akeyless Gateway. It covers everything from namespace creation to secret retrieval.
 
+## 🛠️ Prerequisites
+Before starting this demo, you must have a functional **Akeyless Kubernetes Auth Method** configured in your Gateway. If you haven't set this up yet, you can use this automation tool:
+- **K8s Auth Setup Tool**: [Kubernetes-Authentication](https://github.com/leon-maister/Kubernetes-Authentication)
+
 ## 📂 File Descriptions
 | File | Function |
 | :--- | :--- |
@@ -13,7 +17,7 @@ This project demonstrates how to authenticate a Python application within Kubern
 ## ⚠️ Configuration
 Before building the image, open `get_akeyless_secret.py` and set your specific constants:
 - `AKEYLESS_GATEWAY_URL`: Your Gateway address.
-- `ACCESS_ID`: Your Akeyless Access ID.
+- `ACCESS_ID`: Your Akeyless **Kubernetes Auth Method** Access ID.
 - `K8S_AUTH_CONFIG_NAME`: The name of your K8s Auth configuration.
 - `SECRET_NAME`: The path to the secret you want to fetch.
 
