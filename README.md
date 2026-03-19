@@ -50,7 +50,7 @@ kubectl logs -f deployment/akeyless-kubernetes-authentication-app -n akeyless-ku
 ```
 
 ## ⚙️ Akeyless Configuration
-For a successful handshake, ensure your Akeyless K8s Auth Method is configured to trust:
+For a successful handshake, ensure your Akeyless K8s Auth Method is configured to trust (at least ensuring it does not restrict access to these Namespaces):
 - **Namespace**: `akeyless-kubernetes-authentication-demo`
 - **ServiceAccount**: `akeyless-kubernetes-authentication-sa`
 
