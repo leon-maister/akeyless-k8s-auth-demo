@@ -21,15 +21,16 @@ Before building the image, open `get_akeyless_secret.py` and set your specific c
 - `K8S_AUTH_CONFIG_NAME`: The name of your K8s Auth configuration.
 - `SECRET_NAME`: The path to the secret you want to fetch.
 
-## 🚀 Quick Start Guide
-
-### 1. Build and Push the Image
+## 👩‍💻 For Developer
+### Build and Push the Image
 ```bash
 docker build -t leon-maister/akeyless-k8s-demo:5.0 .
 docker push leon-maister/akeyless-k8s-demo:5.0
 ```
 
-### 2. Environment Setup
+## 🚀 Quick Start Guide
+
+### 1. Environment Setup
 Run these commands to prepare your cluster:
 ```bash
 # Create namespace if it doesn't exist
@@ -39,7 +40,7 @@ kubectl create namespace akeyless-kubernetes-authentication-demo --dry-run=clien
 kubectl apply -f serviceaccount.yaml
 ```
 
-### 3. Deploy and Verify
+### 2. Deploy and Verify
 ```bash
 # Launch the application
 kubectl apply -f deployment.yaml
