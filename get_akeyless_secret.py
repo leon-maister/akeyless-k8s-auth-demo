@@ -16,7 +16,7 @@ TOKEN_PATH = "/var/run/secrets/kubernetes.io/serviceaccount/token"
 # -------------------------------
 
 def get_akeyless_token():
-    print(f"--- Akeyless Auth & Secret Fetch (v5.1) ---")
+    print(f"--- Akeyless Auth & Secret Fetch (v1.0) ---")
     
     if not os.path.exists(TOKEN_PATH):
         print(f"ERROR: Token not found at {TOKEN_PATH}")

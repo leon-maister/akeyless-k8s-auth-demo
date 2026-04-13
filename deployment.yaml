@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: akeyless-kubernetes-authentication-app
-  namespace: akeyless-kubernetes-authentication-demo
+  name: akeyless-python-app
+  namespace: akeyless-k8s-python-demo
 
 spec:
   replicas: 1
@@ -11,17 +11,17 @@ spec:
   
   selector:
     matchLabels:
-      app: akeyless-kubernetes-authentication-app
+      app: akeyless-python-app
 
   template:
     metadata:
       labels:
-        app: akeyless-kubernetes-authentication-app
+        app: akeyless-python-app
 
     spec:
-      serviceAccountName: akeyless-kubernetes-authentication-sa
+      serviceAccountName: akeyless-python-sa
 
       containers:
       - name: python-app
-        image: leonmaister/akeyless-kubernetes-authentication-demo:5.1
+        image: leonmaister/akeyless-k8s-python-demo:5.1
         imagePullPolicy: Always

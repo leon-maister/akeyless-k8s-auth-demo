@@ -2,14 +2,14 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: akeyless-retrieval-job
-  namespace: akeyless-kubernetes-authentication-demo
+  namespace: akeyless-k8s-python-demo
 spec:
   template:
     spec:
-      serviceAccountName: akeyless-kubernetes-authentication-sa
+      serviceAccountName: akeyless-python-sa
       containers:
       - name: python-app
-        image: leonmaister/akeyless-kubernetes-authentication-demo:5.1
+        image: leonmaister/akeyless-k8s-python-demo:1.0
         imagePullPolicy: Always
       restartPolicy: Never 
   backoffLimit: 2 
