@@ -77,3 +77,5 @@ Ensure your Akeyless K8s Auth Method trusts:
 
 ---
 **Maintained by**: [leon-maister](https://github.com/leon-maister)
+
+<sub style="color: gray;">/home/keyless/k8s/akeyless-k8s-python-demo</sub>
