@@ -47,13 +47,16 @@ kubectl create namespace akeyless-k8s-python-demo --dry-run=client -o yaml | kub
 kubectl apply -f serviceaccount.yaml
 ```
 
-### 2. Run Job and Verify (The Professional Way)
+### 2. Run Job and Verify
 ```bash
 # Launch the application as a Job
 kubectl apply -f job.yaml
 
-# IMPORTANT: Use this command to see full logs including headers and Sub-Claims
-kubectl logs $(kubectl get pods -n akeyless-k8s-python-demo -l job-name=akeyless-retrieval-job --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[-1].metadata.name}') -n akeyless-k8s-python-demo
+# 1. Get the name of the last created pod
+POD_NAME=$(kubectl get pods -n akeyless-k8s-python-demo -l job-name=akeyless-retrieval-job --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[-1].metadata.name}')
+
+# 2. View full logs including headers and Sub-Claims
+kubectl logs $POD_NAME -n akeyless-k8s-python-demo
 ```
 
 ### 🔄 Rerunning the Job
