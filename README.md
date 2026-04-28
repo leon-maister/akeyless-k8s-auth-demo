@@ -38,6 +38,7 @@ Before running the code, demonstrate the Akeyless configuration in the Console:
 2. **Advanced Configuration**: Explain the key security settings:
    - **Allowed Client Types**: Highlight this security sub-layer that defines which entities are trusted (CLI, SDK).
    - **Namespace Restriction**: Use our target namespace `akeyless-k8s-python-demo` as a prime example of how to restrict authentication to specific namespaces or service accounts.
+3. **Code Inspection**: Open `get_akeyless_secret_SDK.py` and emphasize that the code contains **only the Access ID**. There are **no passwords, API keys, or hardcoded credentials**, demonstrating a truly keyless approach.
 
 ## 🚀 Quick Start Guide
 
