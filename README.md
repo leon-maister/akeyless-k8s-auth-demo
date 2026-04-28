@@ -17,10 +17,6 @@
 3. **Identity Verification**: The script calls `describe_sub_claims()` to inspect the JWT claims validated by the Gateway.
 4. **Secret Access**: Upon successful auth, the SDK fetches the secret value directly into the app memory.
 
-## 🛠️ Prerequisites
-Before starting this demo, you must have a functional **Akeyless Kubernetes Auth Method** configured.
-- **K8s Auth Setup Tool**: [Kubernetes-Authentication](https://github.com/leon-maister/Kubernetes-Authentication)
-
 ## 📂 File Descriptions
 | File | Function |
 | :--- | :--- |
@@ -35,6 +31,11 @@ Before starting this demo, you must have a functional **Akeyless Kubernetes Auth
 docker build -t leonmaister/akeyless-k8s-python-demo:2.4-sdk .
 docker push leonmaister/akeyless-k8s-python-demo:2.4-sdk
 ```
+
+## 🖥️ Demo UI (Configuration Overview)
+Before running the code, demonstrate the Akeyless configuration in the Console:
+1. **Auth Method**: Locate the K8s Auth Method with ID: `p-kmx8x116z7j9km`.
+2. **Advanced Configuration**: Explain the **Advanced Configuration** settings, focusing on how the Gateway validates the Kubernetes JWT and maps it to Akeyless claims.
 
 ## 🚀 Quick Start Guide
 
