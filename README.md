@@ -29,6 +29,9 @@
 
 ### Local Testing & Development (PyCharm on Windows)
 To open and debug this project locally in PyCharm on Windows:
+
+\![PyCharm Project Opening](Screenshot_1.jpg)
+
 1. Open **PyCharm** on your Windows machine.
 2. Navigate to **File** -> **Open** from the top menu.
 3. In the file browser, specify the network path to your project folder:
