@@ -26,6 +26,17 @@
 | dockerfile | Builds the container (Recommended: use -u flag for unbuffered logs). |
 
 ## 👩‍💻 For Developer
+
+### Local Testing & Development (PyCharm on Windows)
+To open and debug this project locally in PyCharm on Windows:
+1. Open **PyCharm** on your Windows machine.
+2. Navigate to **File** -> **Open** from the top menu.
+3. In the file browser, specify the path to your project folder (if using WSL, access it via the network path):
+   ```text
+   \wsl$untu\home\keyless\k8skeyless-k8s-python-demo
+   ```
+4. Configure your **Environment Variables** inside PyCharm Run Configuration (`AKEYLESS_API_URL`, `AKEYLESS_ACCESS_ID`, `AKEYLESS_SECRET_NAME`, and `K8S_JWT_TOKEN` for fallback testing).
+
 ### Build and Push the Image
 ```bash
 docker build -t leonmaister/akeyless-k8s-python-demo:2.4-sdk .
@@ -38,7 +49,6 @@ Before running the code, demonstrate the Akeyless configuration in the Console:
 2. **Advanced Configuration**: Explain the key security settings:
    - **Allowed Client Types**: Highlight this security sub-layer that defines which entities are trusted (CLI, SDK).
    - **Namespace Restriction**: Use our target namespace `akeyless-k8s-python-demo` as a prime example of how to restrict authentication to specific namespaces or service accounts.
-3. **Code Inspection**: Open `get_akeyless_secret_SDK.py` and emphasize that the code contains **only the Access ID**. There are **no passwords, API keys, or hardcoded credentials**, demonstrating a truly keyless approach.
 
 ## 🚀 Quick Start Guide
 

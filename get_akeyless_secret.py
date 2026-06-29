@@ -4,7 +4,7 @@ import sys
 import base64
 
 # --- CONFIGURATION CONSTANTS ----
-AKEYLESS_GATEWAY_URL = "https://gw-gke.lm.cs.akeyless.fans"
+AKEYLESS_GATEWAY_URL = "https://gw-aws.lm.cs.akeyless.fans"
 AUTH_URL = f"{AKEYLESS_GATEWAY_URL}/api/v2/auth"
 GET_SECRET_URL = f"{AKEYLESS_GATEWAY_URL}/api/v2/get-secret-value"
 
