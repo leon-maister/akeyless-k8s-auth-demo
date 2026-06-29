@@ -31,9 +31,9 @@
 To open and debug this project locally in PyCharm on Windows:
 1. Open **PyCharm** on your Windows machine.
 2. Navigate to **File** -> **Open** from the top menu.
-3. In the file browser, specify the path to your project folder:
+3. In the file browser, specify the network path to your project folder:
    ```text
-   \wsl$untu\home\keyless\k8skeyless-k8s-python-demo
+   \\wsl.localhost\Ubuntu\home\keyless\k8s\akeyless-k8s-python-demo
    ```
 
 ### Build and Push the Image
