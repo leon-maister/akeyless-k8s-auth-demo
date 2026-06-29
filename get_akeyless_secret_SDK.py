@@ -2,25 +2,26 @@ import akeyless
 import os
 import sys
 import base64
-import sys
 
-# Принудительно отключаем буферизацию для всего вывода
+
 sys.stdout.reconfigure(line_buffering=True)
 
 # --- CONFIGURATION CONSTANTS ----
 # SDK requires the base path to the API v2
-AKEYLESS_GATEWAY_URL = "https://gw-gke.lm.cs.akeyless.fans/api/v2" 
-ACCESS_ID = "p-kmx8x116z7j9km"
-K8S_AUTH_CONFIG_NAME = "k8s-config-created-by-script"
-SECRET_NAME = "/MyFirstSecret"
+AKEYLESS_GATEWAY_URL = os.getenv("AKEYLESS_API_URL", "https://gw-aws.lm.cs.akeyless.fans/api/v2")
+ACCESS_ID = os.getenv("AKEYLESS_ACCESS_ID", "p-at5t8max5sxgkm")
+K8S_AUTH_CONFIG_NAME = os.getenv("K8S_AUTH_CONFIG_NAME", "k8s-config-created-by-script-eks")
+SECRET_NAME = os.getenv("AKEYLESS_SECRET_NAME", "/MyFirstSecret")
 
 # Path to the ServiceAccount token automatically mounted by Kubernetes
 TOKEN_PATH = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+
+
 # -------------------------------
 
 def fetch_secret_with_sdk():
     pod_name = os.getenv('HOSTNAME', 'unknown-pod')
-    
+
     print(f"--- Config INFO ---")
     print(f"Target Gateway: {AKEYLESS_GATEWAY_URL}")
     print(f"Access ID:      {ACCESS_ID}")
@@ -32,18 +33,26 @@ def fetch_secret_with_sdk():
     print(f"--- Akeyless Auth & Secret Fetch (Python SDK v2.4) ---")
 
     # 1. Check if the Kubernetes ServiceAccount token exists
-    if not os.path.exists(TOKEN_PATH):
-        print(f"ERROR: Token not found at {TOKEN_PATH}")
-        sys.exit(1)
+    if os.path.exists(TOKEN_PATH):
+        try:
+            with open(TOKEN_PATH, "r") as f:
+                raw_token = f.read().strip()
+        except Exception as e:
+            print(f"Failed to read K8s token: {e}")
+            return
+    else:
+        # Fallback for local testing in PyCharm via environment variable
+        raw_token = os.getenv("K8S_JWT_TOKEN")
+        if not raw_token:
+            print(f"ERROR: Token not found at {TOKEN_PATH} and K8S_JWT_TOKEN env var is missing.")
+            sys.exit(1)
 
     try:
-        with open(TOKEN_PATH, "r") as f:
-            raw_token = f.read().strip()
-            # IMPORTANT: For K8s auth, the Gateway expects the token to be Base64 encoded.
-            # Unlike 'access_key', the SDK does not auto-encode 'k8s_service_account_token'.
-            k8s_token = base64.b64encode(raw_token.encode()).decode()
+        # IMPORTANT: For K8s auth, the Gateway expects the token to be Base64 encoded.
+        # Unlike 'access_key', the SDK does not auto-encode 'k8s_service_account_token'.
+        k8s_token = base64.b64encode(raw_token.encode()).decode()
     except Exception as e:
-        print(f"Failed to read/encode K8s token: {e}")
+        print(f"Failed to encode K8s token: {e}")
         return
 
     # 2. Setup API client configuration
@@ -59,7 +68,7 @@ def fetch_secret_with_sdk():
             k8s_auth_config_name=K8S_AUTH_CONFIG_NAME,
             k8s_service_account_token=k8s_token
         )
-        
+
         auth_res = api.auth(auth_body)
         token = auth_res.token
         print("AUTHENTICATION SUCCEEDED!", flush=True)
@@ -69,7 +78,7 @@ def fetch_secret_with_sdk():
         try:
             # Using the exact class name found via 'dir()'
             sub_claims_body = akeyless.DescribeSubClaims(token=token)
-            
+
             # The method name in the API object is usually the snake_case version
             sub_claims_res = api.describe_sub_claims(sub_claims_body)
             print(sub_claims_res)
@@ -82,12 +91,12 @@ def fetch_secret_with_sdk():
             names=[SECRET_NAME],
             token=token
         )
-        
+
         secret_res = api.get_secret_value(secret_body)
-        
+
         # Secret values are returned as a dictionary: { "name": "value" }
         secret_value = secret_res.get(SECRET_NAME)
-        
+
         if secret_value:
             print(f"YOUR SECRET VALUE: {secret_value}")
         else:
@@ -98,6 +107,7 @@ def fetch_secret_with_sdk():
         print(f"Details: {e.body}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     fetch_secret_with_sdk()

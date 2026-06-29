@@ -7,11 +7,9 @@ spec:
   template:
     spec:
       serviceAccountName: akeyless-python-sa
-      # 
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
-        # 
         fsGroup: 2000
       containers:
       - name: python-app
@@ -24,17 +22,22 @@ spec:
           requests:
             cpu: "50m"
             memory: "64Mi"
-        # 
+        env:
+        - name: AKEYLESS_API_URL
+          value: "https://gw-aws.lm.cs.akeyless.fans/api/v2"
+        - name: AKEYLESS_ACCESS_ID
+          value: "p-at5t8max5sxqkm"
+        - name: K8S_AUTH_CONFIG_NAME
+          value: "k8s-config-created-by-script-eks"
+        - name: AKEYLESS_SECRET_NAME
+          value: "/MyFirstSecret"
         securityContext:
           allowPrivilegeEscalation: false
-          # 
           capabilities:
             drop:
               - ALL
-          # 
           runAsNonRoot: true
           runAsUser: 1000
-          # 
-          readOnlyRootFilesystem: false 
+          readOnlyRootFilesystem: false
       restartPolicy: Never
   backoffLimit: 3
