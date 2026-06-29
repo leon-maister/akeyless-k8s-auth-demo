@@ -26,7 +26,7 @@ spec:
         - name: AKEYLESS_API_URL
           value: "https://gw-aws.lm.cs.akeyless.fans/api/v2"
         - name: AKEYLESS_ACCESS_ID
-          value: "p-at5t8max5sxqkm"
+          value: "p-at5t8max5sxgkm"
         - name: K8S_AUTH_CONFIG_NAME
           value: "k8s-config-created-by-script-eks"
         - name: AKEYLESS_SECRET_NAME
