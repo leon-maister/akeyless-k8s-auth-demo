@@ -31,11 +31,10 @@
 To open and debug this project locally in PyCharm on Windows:
 1. Open **PyCharm** on your Windows machine.
 2. Navigate to **File** -> **Open** from the top menu.
-3. In the file browser, specify the path to your project folder (if using WSL, access it via the network path):
+3. In the file browser, specify the path to your project folder:
    ```text
    \wsl$untu\home\keyless\k8skeyless-k8s-python-demo
    ```
-4. Configure your **Environment Variables** inside PyCharm Run Configuration (`AKEYLESS_API_URL`, `AKEYLESS_ACCESS_ID`, `AKEYLESS_SECRET_NAME`, and `K8S_JWT_TOKEN` for fallback testing).
 
 ### Build and Push the Image
 ```bash
