@@ -47,7 +47,7 @@ docker push leonmaister/akeyless-k8s-python-demo:2.4-sdk
 
 ## 🖥️ Demo UI (Configuration Overview)
 Before running the code, demonstrate the Akeyless configuration in the Console:
-1. **Auth Method**: Locate the K8s Auth Method with ID: `p-kmx8x116z7j9km`.
+1. **Auth Method**: Locate the K8s Auth Method with ID: `p-at5t8max5sxgkm`.
 2. **Advanced Configuration**: Explain the key security settings:
    - **Allowed Client Types**: Highlight this security sub-layer that defines which entities are trusted (CLI, SDK).
    - **Namespace Restriction**: Use our target namespace `akeyless-k8s-python-demo` as a prime example of how to restrict authentication to specific namespaces or service accounts.
